@@ -1,0 +1,50 @@
+{% extends "origin.html" %}
+
+{% block title %}
+Create Job Drive - Infinity Jobs Portal
+{% endblock %}
+
+{% block content %}
+<div class="drive-mode">
+
+<h2>Create Job Drive</h2>
+
+<form method="POST" action="{{ url_for('create_drive') }}">
+
+<label>Job Title</label><br>
+<input type="text" name="job_title" required>
+
+<label>Job Description</label><br>
+<textarea name="job_description" required></textarea>
+
+<label>Eligibility Criteria</label><br>
+<input type="text" name="eligibility" required>
+
+<label>Application Deadline</label><br>
+<input type="date" name="deadline" required>
+
+<button type="submit">Create Drive</button>
+
+</form>
+
+</div>
+
+<style>
+.drive-mode{
+width:350px;
+margin:40px auto;
+}
+.drive-mode input,
+.drive-mode textarea,
+.drive-mode button{
+width:100%;
+margin-top:8px;
+padding:6px;
+}
+textarea{
+height:80px;
+resize:vertical;
+}
+</style>
+
+{% endblock %}

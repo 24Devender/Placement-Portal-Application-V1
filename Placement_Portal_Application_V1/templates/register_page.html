@@ -1,0 +1,74 @@
+{% extends "origin.html" %}
+
+{% block title %}
+Register - Infinity Jobs Portal
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+
+<h2>Register for a New Account</h2>
+
+<form method="POST" action="{{ url_for('register') }}">
+
+<label>Username</label>
+<input type="text" name="username" required placeholder="Enter Your Name Here">
+
+<label>Email</label>
+<input type="email" name="email" required placeholder="Enter Your E-Mail Here">
+
+<label>Password</label>
+<input type="password" name="password" required placeholder="Enter Your Password Here">
+
+<label>Role</label>
+<select name="role" required>
+<option value="student">Student</option>
+<option value="company">Company</option>
+</select>
+
+<p class="info-text">
+Welcome guests! Please register to access our job portal. Students can explore exciting job opportunities, while companies can connect with top talent.
+</p>
+
+<p class="note-text">
+Note: Company accounts require admin approval.
+</p>
+
+<button type="submit">Register</button>
+
+</form>
+
+<p class="login-link">
+Already have an account? <a href="{{ url_for('login') }}">Login here</a>
+</p>
+
+</div>
+
+<style>
+.register-container{
+width:320px;
+margin:50px auto;
+}
+.register-container input,
+.register-container select,
+.register-container button{
+width:100%;
+margin-top:8px;
+padding:6px;
+}
+.info-text{
+font-size:12px;
+color:gray;
+margin-top:10px;
+}
+.note-text{
+font-size:12px;
+margin-top:5px;
+}
+.login-link{
+margin-top:15px;
+font-size:14px;
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "origin.html" %}
+
+{% block title %}
+Company Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2>Company Dashboard</h2>
+
+<a href="{{ url_for('logout') }}">Logout</a>
+
+<h3>Company Profile</h3>
+
+<form action="{{ url_for('company_dashboard') }}" method="POST">
+
+<label>Company Name</label>
+<input type="text" name="company_name" value="{{ company.company_name }}">
+
+<label>GST Number</label>
+<input type="text" name="GST_number" value="{{ company.GST_number }}">
+
+<label>Email</label>
+<input type="email" name="email" value="{{ company.email }}">
+
+<label>HR Contact</label>
+<input type="text" name="HR_contact" value="{{ company.HR_contact }}">
+
+<label>Website</label>
+<input type="text" name="website" value="{{ company.website }}">
+
+<button type="submit">Save Profile</button>
+
+</form>
+
+<hr>
+
+<h3>Create Drive</h3>
+
+<a href="{{ url_for('create_drive') }}">
+<button>Create New Drive</button>
+</a>
+
+<hr>
+
+<h3>Your Drives</h3>
+
+{% if drives %}
+
+<table>
+
+<tr>
+<th>Job Title</th>
+<th>Status</th>
+<th>Applicants</th>
+</tr>
+
+{% for d in drives %}
+
+<tr>
+
+<td>{{ d.job_title }}</td>
+<td>{{ d.status }}</td>
+
+<td>
+<a href="{{ url_for('view_applicants',drive_id=d.id) }}">
+View Applicants
+</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p>No drives created yet.</p>
+
+{% endif %}
+
+<style>
+
+form{
+width:320px;
+margin-top:20px;
+}
+
+input{
+width:100%;
+padding:8px;
+margin-top:5px;
+}
+
+button{
+margin-top:10px;
+padding:8px;
+background:#2c3e50;
+color:white;
+border:none;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+}
+
+th{
+background:#2c3e50;
+color:white;
+}
+
+</style>
+
+{% endblock %}

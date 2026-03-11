@@ -1,0 +1,18 @@
+{% extends "origin.html" %}
+
+{% block content %}
+<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:80vh;text-align:center;color:black;">
+<h1>Welcome to Infinity Jobs Portal</h1>
+
+<p style="font-size:18px;max-width:700px;">
+Discover your dream job or find top talent with us. Our portal connects students and companies, providing a seamless experience for job seekers and employers alike. Join us today and take the first step towards your career goals.
+</p>
+
+<br>
+
+<a href="{{ url_for('register') }}" style="background-color:white;padding:10px 20px;text-decoration:none;font-weight:bold;border-radius:5px;">
+Register Now
+</a>
+
+</div>
+{% endblock %}

@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{% block title %}Infinity Jobs Portal{% endblock %}</title>
+
+<style>
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    margin:0;
+}
+
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background-color:skyblue;
+    padding:10px 20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo h2{
+    color:white;
+    margin:0;
+}
+
+.nav-links a{
+    margin-left:20px;
+    text-decoration:none;
+    font-weight:bold;
+    color:black;
+}
+
+.main-bg{
+    position:relative;
+    background-image: url('{{ url_for("static", filename="image1.jpg") }}');
+    background-size:cover;
+    background-position:center;
+    min-height:80vh;
+}
+
+.main-bg::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.75);
+}
+
+.content{
+    position:relative;
+    padding:20px;
+}
+
+.site-footer{
+    margin-top:20px;
+    padding:10px;
+}
+
+</style>
 </head>
+
 <body>
-    
+
+<nav class="navbar">
+
+<div class="logo">
+<img src="{{ url_for('static', filename='image2.png') }}" width="50">
+<h2>Infinity Jobs Portal</h2>
+</div>
+
+<div class="nav-links">
+    {% if 'id' not in session %}
+        <a href="{{url_for('register')}}">Register</a>
+        <a href="{{url_for('login')}}">Login</a>
+    {% else %}
+        <a href="{{url_for('logout')}}">Logout</a>
+    {% endif %}
+</div>
+
+</nav>
+
+<div class="main-bg">
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+<footer class="site-footer">
+<p>&copy; 2026 Infinity Jobs Portal. All rights reserved. Partners - IIT Madras.</p>
+</footer>
+
 </body>
 </html>

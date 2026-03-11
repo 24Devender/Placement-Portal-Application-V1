@@ -1,0 +1,65 @@
+{% extends "origin.html" %}
+
+{% block title %}
+Applicants - Infinity Jobs Portal
+{% endblock %}
+
+{% block content %}
+
+<h2>Applicants</h2>
+
+{% if applications %}
+
+<table>
+
+<tr>
+<th>Student Name</th>
+<th>Status</th>
+<th>Resume</th>
+</tr>
+
+{% for a in applications %}
+
+<tr>
+
+<td>{{ a.student.name }}</td>
+<td>{{ a.status }}</td>
+
+<td>
+{% if a.student.resume %}
+<a href="/{{ a.student.resume }}" target="_blank">View Resume</a>
+{% else %}
+No Resume
+{% endif %}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p>No students have applied yet.</p>
+
+{% endif %}
+
+<style>
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+th,td{
+border:1px solid #ddd;
+padding:8px;
+text-align:left;
+}
+th{
+background-color:#2c3e50;
+color:white;
+}
+</style>
+
+{% endblock %}

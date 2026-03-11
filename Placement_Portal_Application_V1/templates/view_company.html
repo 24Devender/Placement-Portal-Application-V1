@@ -1,0 +1,25 @@
+{% extends "origin.html" %}
+
+{% block title %}
+Company Details
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ company.company_name }}</h2>
+
+<p><b>Email:</b> {{ company.email }}</p>
+
+<p><b>HR Contact:</b> {{ company.HR_contact }}</p>
+
+<p><b>Website:</b> {{ company.website }}</p>
+
+<p><b>GST Number:</b> {{ company.GST_number }}</p>
+
+<h3>Available Drives</h3>
+
+{% for drive in drives %}
+
+{% endfor %}
+
+{% endblock %}

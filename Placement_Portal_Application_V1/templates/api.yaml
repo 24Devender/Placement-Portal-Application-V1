@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: Infinity Jobs Portal API
+  version: 1.0.0
+  description: API documentation for the Placement Portal Application.
+
+paths:
+
+  /login:
+    post:
+      summary: User login
+      description: Authenticates a user and starts a session.
+
+  /register:
+    post:
+      summary: Register new user
+      description: Creates a new user account.
+
+  /logout:
+    get:
+      summary: Logout
+      description: Clears the user session.
+
+  /student_dashboard:
+    get:
+      summary: Student dashboard
+      description: Displays available job drives and student applications.
+
+  /company_dashboard:
+    get:
+      summary: Company dashboard
+      description: Shows company details and created drives.
+
+  /create_drive:
+    post:
+      summary: Create job drive
+      description: Allows companies to create a new recruitment drive.
+
+  /apply_drive/{drive_id}:
+    get:
+      summary: Apply to job drive
+      description: Allows a student to apply for a job drive.
+
+  /view_applicants/{drive_id}:
+    get:
+      summary: View applicants
+      description: Displays students who applied for a drive.
+
+  /upload_resume:
+    post:
+      summary: Upload resume
+      description: Allows students to upload resume files.
+
+  /admin_dashboard:
+    get:
+      summary: Admin dashboard
+      description: Shows companies, students, drives, and applications.
+
+  /approve_company/{id}:
+    get:
+      summary: Approve company
+      description: Allows admin to approve a company registration.
+
+  /reject_company/{id}:
+    get:
+      summary: Reject company
+      description: Allows admin to reject a company.
+
+  /blacklist_company/{id}:
+    get:
+      summary: Blacklist company
+      description: Admin can blacklist a company.
+
+  /unblacklist_company/{id}:
+    get:
+      summary: Remove company blacklist
+      description: Admin removes blacklist from a company.
+
+  /complete_drive/{id}:
+    get:
+      summary: Complete drive
+      description: Marks a recruitment drive as completed.

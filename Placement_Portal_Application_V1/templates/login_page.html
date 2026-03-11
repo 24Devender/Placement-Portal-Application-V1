@@ -1,0 +1,60 @@
+{% extends "origin.html" %}
+
+{% block title %}
+Login - Infinity Jobs Portal
+{% endblock %}
+
+{% block content %}
+<div class="login-mode">
+<h2>Log-in To Your Account</h2>
+
+<form action="{{ url_for('login') }}" method="POST">
+
+<label>Email</label><br>
+<input type="email" name="pre_email" required placeholder="Enter Your E-Mail Here">
+
+<label>Password</label><br>
+<input type="password" name="pre_password" required placeholder="Enter Your Password Here">
+
+<select name="role" required>
+<option value="" disabled selected>Select Role</option>
+<option value="student">Student</option>
+<option value="company">Company</option>
+<option value="admin">Admin</option>
+</select>
+
+<p class="guest-login">Welcome guests! Please log in to access your account!</p>
+
+{% if error_message is defined %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+
+<button type="submit">Log In</button>
+
+</form>
+</div>
+
+<style>
+.login-mode{
+width:300px;
+margin:50px auto;
+}
+.login-mode input,
+.login-mode select,
+.login-mode button{
+width:100%;
+margin-top:8px;
+padding:6px;
+}
+.guest-login{
+font-size:12px;
+color:gray;
+margin-top:8px;
+}
+.error{
+color:red;
+margin-top:10px;
+}
+</style>
+
+{% endblock %}

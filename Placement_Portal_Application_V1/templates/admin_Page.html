@@ -1,0 +1,148 @@
+{% extends "origin.html" %}
+
+{% block title %}
+Admin Dashboard - Infinity Jobs Portal
+{% endblock %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<a href="{{ url_for('logout') }}">Logout</a>
+
+<br><br>
+
+<form method="GET" action="{{ url_for('admin_dashboard') }}">
+<input type="text" name="search" placeholder="Search students or companies">
+<button type="submit">Search</button>
+</form>
+
+<h3>Registered Companies</h3>
+
+<table>
+<tr>
+<th>Company Name</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+
+{% for c in companies %}
+<tr>
+
+<td>{{ c.company_name }}</td>
+
+<td>
+{% if c.blacklisted %}
+Blacklisted
+{% elif c.approval_status == "Approved" %}
+Approved
+{% elif c.approval_status == "Rejected" %}
+Rejected
+{% else %}
+Pending
+{% endif %}
+</td>
+
+<td>
+<a href="{{ url_for('approve_company', id=c.id) }}">Approve</a>
+<a href="{{ url_for('reject_company', id=c.id) }}">Reject</a>
+
+{% if c.blacklisted %}
+<a href="{{ url_for('unblacklist_company', id=c.id) }}">Remove Blacklist</a>
+{% else %}
+<a href="{{ url_for('blacklist_company', id=c.id) }}">Blacklist</a>
+{% endif %}
+
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<h3>Registered Students</h3>
+
+<table>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Actions</th>
+</tr>
+
+{% for s in students %}
+<tr>
+
+<td>{{ s.name }}</td>
+<td>{{ s.email }}</td>
+
+<td>
+
+{% if s.blacklisted %}
+<a href="{{ url_for('unblacklist_student', id=s.id) }}">Remove Blacklist</a>
+{% else %}
+<a href="{{ url_for('blacklist_student', id=s.id) }}">Blacklist</a>
+{% endif %}
+
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<h3>Placement Drives</h3>
+
+<table>
+
+<tr>
+<th>Company</th>
+<th>Job Title</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+
+{% for d in drives %}
+
+<tr>
+
+<td>{{ d.company.company_name }}</td>
+<td>{{ d.job_title }}</td>
+<td>{{ d.status }}</td>
+
+<td>
+
+<a href="{{ url_for('view_applicants', drive_id=d.id) }}">View Applicants</a>
+
+{% if d.status != "Completed" %}
+<a href="{{ url_for('complete_drive', id=d.id) }}">Mark Complete</a>
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<style>
+
+table{
+border-collapse:collapse;
+width:100%;
+margin-top:10px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+text-align:left;
+}
+
+th{
+background-color:#2c3e50;
+color:white;
+}
+
+</style>
+
+{% endblock %}
